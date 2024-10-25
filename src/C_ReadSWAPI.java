@@ -20,20 +20,20 @@ public class C_ReadSWAPI {
     }
 
     public C_ReadSWAPI() throws ParseException {
-        pull();
+        pull(); // lean into habit of organizing code in methods
     }
 
     public void pull() throws ParseException {
         String output = "";
         String jsonString="";
-        try {
+        try { // html reading but html is a json
 
             URL url = new URL("https://swapi.dev/api/people/4/"); /** Your API's URL goes here */
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
 
-            if (conn.getResponseCode() != 200) {
+            if (conn.getResponseCode() != 200) { // if it doesn't exist print error
 
                 throw new RuntimeException("Failed : HTTP error code : "
                         + conn.getResponseCode());
@@ -46,7 +46,7 @@ public class C_ReadSWAPI {
             System.out.print("OUTPUT from Server: ");
             while ((output = br.readLine()) != null) {
                 System.out.println(output);
-                jsonString += output;
+                jsonString += output; // jsonString = jsonString + output - generating all the lines
             }
 
             conn.disconnect();
